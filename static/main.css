@@ -1,0 +1,154 @@
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff2)
+      format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff2) format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff) format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+body,
+input {
+  font-size: 16px;
+  line-height: 24px;
+  color: #679f84;
+  font-family: "ColfaxAI", Helvetica, sans-serif;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+  background-color: #93c7a9;
+}
+.icon {
+  width: 200px;
+}
+h3 {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: bold;
+  color: #202123;
+  margin: 16px 0 40px;
+}
+h4 {
+  font-size: 24px;
+  line-height: 25px;
+  font-weight: bold;
+  color: #202123;
+  margin: 16px 0 40px;
+}
+h5 {
+  font-size: 20px;
+  line-height: 25px;
+  font-weight: bold;
+  color: #202123;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 10px
+}
+h5 {
+  display:block;
+  width: 500px;
+}
+p {
+  font-size: 20px;
+  line-height: 5px;
+  font-weight: bold;
+  color: #202123;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+}
+input[type="text"] {
+  padding: 12px 16px;
+  border: 1px solid #10a37f;
+  border-radius: 4px;
+  margin-bottom: 24px;
+}
+::placeholder {
+  color: #8e8ea0;
+  opacity: 1;
+  font-size: 20px;
+}
+input[type="submit"] {
+  padding: 12px 0;
+  color: #fff;
+  background-color: #10a37f;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+}
+/* .result {
+  font-size: 20px;
+  height: 300px;
+  font-weight: bold;
+  color: #14171c;
+  margin: 24px 0 40px;
+} */
+/* Popup container */
+.popup{
+  background-color: #ffffff;
+  width: 450px;
+  padding: 30px 40px;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  left: 50%;
+  top: 50%;
+  border-radius: 8px;
+  font-family: "Poppins",sans-serif;
+  display: none; 
+  text-align: center;
+}
+.popup button{
+  display: block;
+  margin:  0 0 20px auto;
+  background-color: transparent;
+  font-size: 20px;
+  color: #150404;
+  background: #039a38;
+  border-radius: 100%;
+  width: 25px;
+  height: 25px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.popup h2{
+margin-top: 0px;
+}
+.popup p{
+  font-size: 14px;
+  text-align: justify;
+  margin: 20px 0 10px;
+  line-height: 15px;
+  white-space: pre-wrap;
+}
+
+#industry{
+  height:30px;
+  width:200px;   
+ }
+
+/* The container <div> - needed to position the dropdown content */
+#industry {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+#industry option{
+  height:30px;
+  width:200px;   
+}
+
+
