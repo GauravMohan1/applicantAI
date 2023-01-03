@@ -1,41 +1,40 @@
 <!DOCTYPE html>
-<head>
-  <title>ApplicantAI</title>
-  <link
-    rel="shortcut icon"
-    href="{{ url_for('static', filename='ai_pic.jpeg') }}"
-  />
-  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
-</head>
-<body>
-  <img src="{{ url_for('static', filename='ai_pic.jpeg') }}" class="icon" />
-  <h3>ApplicantAI</h3>
-  <h5 style="text-align:center"> 
-    Writing a cover letter for every job can be hard. 
-    That is why ApplicantAI is here to help. 
-    Input your resume, choose a job function, paste the job description, 
-    and input the company name and our AI algorithm will create a
-    personalized cover letter that can help you land your next dream job!
-  </h5>
-  <h4>Drag and drop your resume or Upload it</h4>
-  <form action="/app" method="post" enctype="multipart/form-data">
-    <input type="file" name="resume" id="resume" required>
-    <br>
-    <h5> Choose Job Function</h5>
-    <select name="industry" id="industry" required>
-      <option value="Business">Consulting</option>
-      <option value="HR">HR</option>
-      <option value="Finance">Finance</option>
-      <option value="Engineering">Engineering</option>
-      <option value="Product">Product</option>
-    </select>
-  <br>
-    <textarea class="textAreaMultiline" name='job' id='job' placeholder="Paste Job Description Here" rows="25" cols="40" required></textarea> 
-  <br>
-    <input type="text" name="company" placeholder="Enter a company name" required />
-    <input type="submit" value="Generate Cover Letter" />
-  </form>
+  <head>
+    <title>ApplicantAI</title>
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='ai_pic.jpeg') }}"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+  </head>
   <body>
+    <img src="{{ url_for('static', filename='ai_pic.jpeg') }}" class="icon" />
+    <h3>ApplicantAI</h3>
+    <h5 style="text-align:center"> 
+      Writing a cover letter for every job can be hard. 
+      That is why ApplicantAI is here to help. 
+      Input your resume, choose a job function, paste the job description, 
+      and input the company name and our AI algorithm will create a
+      personalized cover letter that can help you land your next dream job!
+    </h5>
+    <h4>Drag and drop your resume or Upload it</h4>
+    <form action="/app" method="post" enctype="multipart/form-data">
+      <input type="file" name="resume" id="resume" required>
+      <br>
+      <h5> Choose Job Function</h5>
+      <select name="industry" id="industry" required>
+        <option value="Business">Consulting</option>
+        <option value="HR">HR</option>
+        <option value="Finance">Finance</option>
+        <option value="Engineering">Engineering</option>
+        <option value="Product">Product</option>
+      </select>
+    <br>
+      <textarea class="textAreaMultiline" name='job' id='job' placeholder="Paste Job Description Here" rows="25" cols="40" required></textarea> 
+    <br>
+      <input type="text" name="company" placeholder="Enter a company name" required />
+      <input type="submit" value="Generate Cover Letter" />
+    </form>
     {% if result %}
     <div class="popup">
       <button id="close">&times;</button>
@@ -60,5 +59,4 @@
       });
      </script>
   </body>
-</body>
 </html>
