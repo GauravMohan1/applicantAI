@@ -5,8 +5,6 @@ from flask import Flask, redirect, render_template, request, url_for
 import PyPDF2
 from dotenv import load_dotenv, find_dotenv
 from pathlib import Path
-from docx2pdf import convert
-
 
 
 
@@ -61,8 +59,9 @@ def extract_resume():
     try:
         pdf = PyPDF2.PdfReader(pdf_file)
     except:
-        pdf_file = convert(pdf_file)
-        pdf = PyPDF2.PdfReader(pdf_file)
+        error_message = "Please upload a PDF version of your resume"
+        return redirect(url_for("index", result=error_message)) 
+
     # Iterate over every page in the PDF
     text = ""
     for page in range(len(pdf.pages)):
