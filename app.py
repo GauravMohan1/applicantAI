@@ -1,7 +1,7 @@
 import os
 
 import openai
-from flask import Flask, Response, redirect, render_template, request, url_for, send_file
+from flask import Flask, redirect, render_template, request, url_for
 import PyPDF2
 
 
@@ -87,6 +87,4 @@ def extract_job():
     response_text += response['choices'][0]['text'].strip()
 
     return response_text
-
-
 
