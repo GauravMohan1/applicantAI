@@ -5,6 +5,7 @@ from flask import Flask, redirect, render_template, request, url_for
 import PyPDF2
 from dotenv import load_dotenv, find_dotenv
 from pathlib import Path
+from docx2pdf import convert
 
 
 
@@ -57,7 +58,11 @@ def extract_resume():
     pdf_file = request.files['resume']
 
     # Create a PDF object
-    pdf = PyPDF2.PdfReader(pdf_file)
+    try:
+        pdf = PyPDF2.PdfReader(pdf_file)
+    except:
+        pdf_file = convert(pdf_file)
+        pdf = PyPDF2.PdfReader(pdf_file)
     # Iterate over every page in the PDF
     text = ""
     for page in range(len(pdf.pages)):
