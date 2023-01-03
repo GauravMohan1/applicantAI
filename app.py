@@ -3,10 +3,14 @@ import os
 import openai
 from flask import Flask, redirect, render_template, request, url_for
 import PyPDF2
+from dotenv import load_dotenv, find_dotenv
+from pathlib import Path
+
 
 
 
 app = Flask(__name__)
+load_dotenv(Path('/etc/secrets/.env'))
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 @app.route("/")
