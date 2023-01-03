@@ -1,5 +1,5 @@
 @font-face {
-  font-family: "ColfaxAI";
+  font-family: "Fantasy";
   src: url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff2)
       format("woff2"),
     url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff) format("woff");
@@ -7,7 +7,7 @@
   font-style: normal;
 }
 @font-face {
-  font-family: "ColfaxAI";
+  font-family: "Fantasy";
   src: url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff2) format("woff2"),
     url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff) format("woff");
   font-weight: bold;
@@ -17,41 +17,40 @@ body,
 input {
   font-size: 16px;
   line-height: 24px;
-  color: #679f84;
-  font-family: "ColfaxAI", Helvetica, sans-serif;
+  color: #74d9ac;
+  font-family: "Fantasy", Helvetica, sans-serif;
 }
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 60px;
-  background-color: #93c7a9;
+  background-color: #001408;
 }
 .icon {
-  width: 200px;
+  width: 300px;
 }
 h3 {
-  font-size: 32px;
+  font-size: 40px;
   line-height: 40px;
   font-weight: bold;
-  color: #202123;
+  color: #f7f7f8;
   margin: 16px 0 40px;
 }
 h4 {
-  font-size: 24px;
+  font-size: 20px;
+  font-family: "Optima";
   line-height: 25px;
   font-weight: bold;
-  color: #202123;
-  margin: 16px 0 40px;
+  color: #f2f3f6;
+  margin: 10px 0 10px;
 }
 h5 {
-  font-size: 20px;
+  font-size: 22px;
+  font-family: "Candera";
   line-height: 25px;
-  font-weight: bold;
-  color: #202123;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 10px
+  color: #fafafa;
+  margin: 10px 0 20px;
 }
 h5 {
   display:block;
@@ -88,14 +87,7 @@ input[type="submit"] {
   text-align: center;
   cursor: pointer;
 }
-/* .result {
-  font-size: 20px;
-  height: 300px;
-  font-weight: bold;
-  color: #14171c;
-  margin: 24px 0 40px;
-} */
-/* Popup container */
+
 .popup{
   background-color: #ffffff;
   width: 450px;
@@ -150,5 +142,3 @@ margin-top: 0px;
   height:30px;
   width:200px;   
 }
-
-
