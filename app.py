@@ -3,8 +3,7 @@ import os
 import openai
 from flask import Flask, Response, redirect, render_template, request, url_for, send_file
 import PyPDF2
-from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen.canvas import Canvas
+
 
 
 app = Flask(__name__)
@@ -29,8 +28,7 @@ def get_letter():
         max_tokens = 1500,
         n=2
     )
-    # with open('cover_letter.txt', 'w') as f:
-    #     f.write(response.choices[0].text)
+
     cover_letter = response.choices[0].text
     return redirect(url_for("index", result=cover_letter))
    
@@ -73,8 +71,6 @@ def extract_resume():
 
     response_text += response['choices'][0]['text'].strip()
 
-    # with open('resume.txt', 'w') as f:
-    #     f.write(response_text)
     return response_text
 
 
@@ -90,18 +86,7 @@ def extract_job():
     )
     response_text += response['choices'][0]['text'].strip()
 
-    # with open('job_description.txt', 'w') as f:
-    #     f.write(response_text)
     return response_text
 
-# def download(text):
-#     pdf = Canvas("cover_letter.pdf", pagesize=letter)
-#     pdf.drawString(100, 100, text)
-#     pdf.save()
-
-#     # Read the PDF and send it as a response
-#     with open("cover_letter.pdf", "rb") as f:
-#         pdf_data = f.read()
-#     return Response(pdf_data, mimetype="application/pdf", headers={"Content-disposition": "attachment;filename=my_pdf.pdf"})
 
 
