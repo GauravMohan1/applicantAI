@@ -41,7 +41,7 @@ def get_letter():
         model="text-davinci-003",
         prompt=generate_prompt(resume, company, job_desc, industry),
         temperature=0.8,
-        max_tokens = 1500,
+        max_tokens = 2000,
         n=2
     )
 
@@ -50,10 +50,10 @@ def get_letter():
    
 def generate_prompt(resume,company, job_desc, industry):
     prompt = {'Finance': "The first paragraph should highlight why the company is interesting to the applicant based off what the company does, company culture, and the company's mission. The second paragraph should align the role responsibilities with the applicant's accomplishments. The third paragraph should mention the leadership abilities of the applicant and explain how that aligns with the company's mission and values.",
-              'Business': "The first paragraph should highlight why the company is interesting to the applicant based off what the company does, company culture, and the company's mission. The second paragraph should highlight how the applicant's internship and professional experience aligns with the role qualifications. The third paragraph should talk about the applicant's communication and leadership skills and how that fits into to the role and company.",
+              'Business': "The first paragraph should highlight why the company is interesting to the applicant based off what the company does, company culture, and the company's mission. The second paragraph should highlight what the applicant has accomplished and how the applicant's internship and professional experience aligns with the role qualifications. The third paragraph should talk about the applicant's communication and leadership skills and how that fits into to the role and company.",
               'Product': "The first paragraph should highlight why the company is interesting to the applicant based off what the company does, company culture, and the company's mission. The second paragraph should highlight the various products the applicant has worked on and his or her impact on improving the product and align these experiences with the company's product. The third paragraph should talk about the applicant's soft skills, such as communication, time management, and creativity and why that will help him or her succeed on the job.",
               'HR': "The first paragraph should highlight why the company is interesting to the applicant based off what the company does, company culture, and the company's mission. The second paragraph should highlight the applicant's initiative to help others through great communication and why that leadership is important in this role. The third paragraph should highlight the applicant's ability to resolve conflict and why that aligns wuth the role responsibilities and company values.",
-              'Engineering': "The first paragraph should highlight why the company is interesting to the applicant based off what the company does, company culture, and the company's mission. The second paragraph should highlight the applicant's impact created from the projects he or she developed. The third paragraph should mention how the role responsibilities aligns with the applicant's skills and domain experience why this makes them a perfect fit for the company.",
+              'Engineering': "The first paragraph should highlight why the company is interesting to the applicant based off what the company does, company culture, and the company's mission. The second paragraph should highlight the applicant's impact created from their work experience and projects he or she developed. The third paragraph should mention how the role responsibilities aligns with the applicant's skills and experience why this makes them a perfect fit for the company.",
               'Manager': "The first paragraph should highlight why the company is interesting to the applicant based off what the company does, the company culture, and the company's mission. The second paragraph should highlight the types of teams the applicant has managed and their leadership style. The third paragraph should mention the accomplishements of the teams' the applicant has managed and how that fits into the role responsibilities and qualifications."}
     string = "Write a three paragraph cover letter for a job application using the information below."
     string += "\n"
@@ -81,7 +81,7 @@ def extract_resume_pdf(pdf_file):
                 prompt="""Summarize the text below into a JSON with exactly the following structure {basic_info: {first_name, last_name, full_name, email, phone_number, location, portfolio_website_url, linkedin_url, github_main_page_url, university, education_level (BS, MS, or PhD), graduation_year, graduation_month, majors, GPA}, work_experience: [{job_title, company, location, duration, job_summary}], leadership_experience:[{role, description}], project_experience:[{project_name, project_discription}]}
 """ + '\n' + text,
                 temperature = 0.0,
-                max_tokens = 1500
+                max_tokens = 2000
             )
 
     response_text = response['choices'][0]['text'].strip()
@@ -105,7 +105,7 @@ def extract_resume_docx(docx_file):
                 prompt="""Summarize the text below into a JSON with exactly the following structure {basic_info: {first_name, last_name, full_name, email, phone_number, location, portfolio_website_url, linkedin_url, github_main_page_url, university, education_level (BS, MS, or PhD), graduation_year, graduation_month, majors, GPA}, work_experience: [{job_title, company, location, duration, job_summary}], leadership_experience:[{role, description}], project_experience:[{project_name, project_discription}]}
 """ + '\n' + text,
                 temperature = 0.0,
-                max_tokens = 1500
+                max_tokens = 2000
             )
 
     response_text = response['choices'][0]['text'].strip()
