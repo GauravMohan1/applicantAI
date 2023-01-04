@@ -19,9 +19,12 @@ def index():
 
 @app.route("/app", methods=["POST"])
 def get_letter():
+    error_message = "Please upload a PDF version of your resume"
     company = request.form["company"]
     industry = request.form["industry"]
     resume = extract_resume()
+    if resume == error_message:
+        return redirect(url_for("index", result=error_message))
     job_desc = extract_job()
     
     response = openai.Completion.create(
@@ -61,7 +64,7 @@ def extract_resume():
         pdf = PyPDF2.PdfReader(pdf_file)
     except:
         error_message = "Please upload a PDF version of your resume"
-        return redirect(url_for("index", result=error_message)) 
+        return error_message 
 
     # Iterate over every page in the PDF
     text = ""
