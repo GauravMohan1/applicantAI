@@ -5,6 +5,9 @@ from flask import Flask, redirect, render_template, request, url_for
 import PyPDF2
 from dotenv import load_dotenv, find_dotenv
 from pathlib import Path
+import mimetypes
+from io import BytesIO
+from docx import Document
 
 
 
@@ -19,13 +22,20 @@ def index():
 
 @app.route("/app", methods=["POST"])
 def get_letter():
-    error_message = "Please upload a PDF version of your resume"
+    error_message = "Please upload a PDF or DOCX version of your resume"
     company = request.form["company"]
     industry = request.form["industry"]
-    resume = extract_resume()
-    if resume == error_message:
+    request_file = request.files['resume']
+    file_name = request_file.filename
+    file_type = mimetypes.guess_type(file_name)[0]
+    if file_type == 'application/pdf':
+        resume = extract_resume_pdf(request_file)
+    elif file_type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+        resume = extract_resume_docx(request_file)
+    else:
         return redirect(url_for("index", result=error_message))
-    job_desc = extract_job()
+    description = request.form['job']
+    job_desc = extract_job(description)
     
     response = openai.Completion.create(
         model="text-davinci-003",
@@ -54,17 +64,10 @@ def generate_prompt(resume,company, job_desc, industry):
     return string
 
 
-def extract_resume():
-    response_text = ''
+def extract_resume_pdf(pdf_file):
     # Get the binary data of the PDF file from the request
-    pdf_file = request.files['resume']
-
     # Create a PDF object
-    try:
-        pdf = PyPDF2.PdfReader(pdf_file)
-    except:
-        error_message = "Please upload a PDF version of your resume"
-        return error_message 
+    pdf = PyPDF2.PdfReader(pdf_file)
 
     # Iterate over every page in the PDF
     text = ""
@@ -81,14 +84,37 @@ def extract_resume():
                 max_tokens = 1500
             )
 
-    response_text += response['choices'][0]['text'].strip()
+    response_text = response['choices'][0]['text'].strip()
+
+    return response_text
+
+def extract_resume_docx(docx_file):
+    file_bytes = BytesIO()
+    file_bytes.write(docx_file.read())
+    # Seek to the beginning of the BytesIO object
+    file_bytes.seek(0)
+    # Read the file using the Document object from python-docx
+    document = Document(file_bytes)
+    # Extract the contents of the document
+    text = ''
+    for paragraph in document.paragraphs:
+        text += paragraph.text
+    
+    response = openai.Completion.create(
+                model="text-davinci-003",
+                prompt="""Summarize the text below into a JSON with exactly the following structure {basic_info: {first_name, last_name, full_name, email, phone_number, location, portfolio_website_url, linkedin_url, github_main_page_url, university, education_level (BS, MS, or PhD), graduation_year, graduation_month, majors, GPA}, work_experience: [{job_title, company, location, duration, job_summary}], leadership_experience:[{role, description}], project_experience:[{project_name, project_discription}]}
+""" + '\n' + text,
+                temperature = 0.0,
+                max_tokens = 1500
+            )
+
+    response_text = response['choices'][0]['text'].strip()
 
     return response_text
 
 
-def extract_job():
+def extract_job(description):
     response_text = ''
-    description = request.form['job']
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt="""Summarize the text below into a JSON with exactly the following structure {basic_info: {company description}, role_description: [{job_title, responsibilities}], role_qualifications:[{qualifications}]}
