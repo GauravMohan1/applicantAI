@@ -17,9 +17,8 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 @app.route("/")
 def index():
-    result = request.args.get("result")
-    return render_template("index.html",result=result)
-
+    return render_template("index.html")
+    
 @app.route("/app", methods=["POST"])
 def get_letter():
     error_message = "Please upload a PDF or DOCX version of your resume"
@@ -33,7 +32,7 @@ def get_letter():
     elif file_type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
         resume = extract_resume_docx(request_file)
     else:
-        return redirect(url_for("index", result=error_message))
+        return render_template('index.html', result=error_message)
     description = request.form['job']
     job_desc = extract_job(description)
     
@@ -46,7 +45,7 @@ def get_letter():
     )
 
     cover_letter = response.choices[0].text
-    return redirect(url_for("index", result=cover_letter))
+    return render_template('index.html', result=cover_letter)
    
 def generate_prompt(resume,company, job_desc, industry):
     prompt = {'Finance': "The first paragraph should highlight why the company is interesting to the applicant based off what the company does, company culture, and the company's mission. The second paragraph should align the role responsibilities with the applicant's accomplishments. The third paragraph should mention the leadership abilities of the applicant and explain how that aligns with the company's mission and values.",
