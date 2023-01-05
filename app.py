@@ -40,7 +40,7 @@ def get_letter():
         model="text-davinci-003",
         prompt=generate_prompt(resume, company, job_desc, industry),
         temperature=0.75,
-        max_tokens = 3000,
+        max_tokens = 2500,
         n=2
     )
 
