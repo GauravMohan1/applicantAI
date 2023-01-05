@@ -39,7 +39,7 @@ def get_letter():
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=generate_prompt(resume, company, job_desc, industry),
-        temperature=1.3,
+        temperature=0.7,
         max_tokens = 2000,
         n=2
     )
