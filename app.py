@@ -126,7 +126,7 @@ def extract_job(description):
     return response_text
 
 
-@app.route("/resume")
+@app.route("/resume", methods=["GET"])
 def index():
         return render_template("form.html")
 
