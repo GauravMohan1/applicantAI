@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<nav>
+  <a href="/">CoverAI</a>
+  <a href="/resume">ResumeAI</a>
+</nav>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}" />
+  </head>
+<body>
+    <h1 style="font-family:Helvetica; color:rgb(228, 228, 228);">Resume Editor</h1>
+    <h5 style="text-align:center"> 
+        ApplicantAI's resume editor provides two form of recommendations for improving an applicant's resume for a given job. 
+        
+        The first tool requires you to upload your resume, paste the job description and hit generate recommendations. This will give you a set of recommendations to improve your resume given the job description, to help it stand out.
+        
+        The second tool is if you want to have a resume section, work or project experience, rewritten. Simply paste the body of the section along with the job description and click generate recommendations. 
+    </h5>
+    <br>
+    <h4 style="text-align:center">Upload Resume (PDF or DOCX only)</h4>
+    <br>
+    <form action="/resume" method="post" id='editor' enctype="multipart/form-data">
+        <input type="file" name="resume" id="resume"/>
+        <br>
+        <div class="textarea-container">
+            <textarea class="textAreaMultiline" name='job' id='job' placeholder="Paste Job Description Here" rows="35" cols="35" required></textarea>
+            <textarea class="textAreaMultiline" name='section' id='section' placeholder="Paste Resume Section Here" rows="25" cols="25"></textarea>
+        </div>
+        <input type="submit" value="Generate recommendations"/>
+    </form>
+    <div class="spinner-container">
+        <p>Loading Recommendations...</p>
+        <div class="spinner"></div>
+    </div>
+    {% if result %}
+    <div class="popup">
+        <button id="close">&times;</button>
+        <h2>Here's your Resume Recommendations!</h2>
+        <p>
+            {{ result }}
+        </p>
+    </div>
+    {% endif %}
+    <script type="text/javascript">
+    // Get the form element
+    const form = document.getElementById('editor');
+
+    form.addEventListener('submit', function(e) {
+        // Show the spinner
+        document.querySelector('.spinner-container').style.display = 'block';
+    });
+
+    window.addEventListener("load", function(){
+        document.querySelector('.spinner-container').style.display = 'none';
+            setTimeout(
+                function open(event){
+                    document.querySelector(".popup").style.display = "block";
+                },
+                2000 
+            )
+        });
+        
+        document.querySelector("#close").addEventListener("click", function(){
+            document.querySelector(".popup").style.display = "none";
+        })
+    </script>
+</body>
+</html>
+
+
+
+    
+   

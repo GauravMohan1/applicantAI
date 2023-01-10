@@ -1,0 +1,238 @@
+@font-face {
+    font-family: "Fantasy";
+    src: url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff2)
+        format("woff2"),
+      url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff) format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Fantasy";
+    src: url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff2) format("woff2"),
+      url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff) format("woff");
+    font-weight: bold;
+    font-style: normal;
+  }
+  body,
+  input {
+    font-size: 16px;
+    line-height: 24px;
+    color: #74d9ac;
+    font-family: "Fantasy", Helvetica, sans-serif;
+  }
+  
+  input[type="file"] {
+    display: block;
+    position: relative;
+    left: 80px;
+  }
+
+  input[type="submit"] {
+    display: block;
+    position: relative;
+    left: 40px;
+  }
+
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+    background-color: #001408;
+  }
+  .icon {
+    width: 300px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: bold;
+    margin: 15px 0 15px;
+  }
+  h4 {
+    font-size: 20px;
+    font-family: "Optima";
+    line-height: 25px;
+    font-weight: bold;
+    color: #f2f3f6;
+    margin: 10px 0px 0px;
+  }
+  h5 {
+    font-size: 22px;
+    font-family: "Candera";
+    line-height: 25px;
+    color: #fafafa;
+    margin: 10px 0 20px;
+    white-space: pre-wrap;
+
+  }
+  h5 {
+    display:block;
+    width: 500px;
+  }
+  p {
+    font-size: 20px;
+    line-height: 5px;
+    font-weight: bold;
+    color: #202123;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+  }
+
+  ::placeholder {
+    color: #8e8ea0;
+    opacity: 1;
+    font-size: 20px;
+  }
+
+  .textarea-container {
+    display: flex;
+    width: 500px;
+    height: 500px;
+    position: relative;
+    right: 60px;
+  }
+
+  .textAreaMultiline {
+    flex: 1;
+    border : 2px solid red;
+    margin: 10px 10px;
+  }
+  input[type="submit"] {
+    padding: 12px 0;
+    color: #fff;
+    background-color: #10a37f;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .popup{
+    background-color: #ffffff;
+    width: 450px;
+    padding: 30px 40px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+    border-radius: 8px;
+    font-family: "Poppins",sans-serif;
+    display: none; 
+    text-align: center;
+  }
+  .popup button{
+    display: block;
+    margin:  0 0 20px auto;
+    background-color: transparent;
+    font-size: 20px;
+    color: #150404;
+    background: #039a38;
+    border-radius: 100%;
+    width: 25px;
+    height: 25px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  .popup h2{
+  margin-top: 0px;
+  }
+  .popup p{
+    font-size: 14px;
+    text-align: justify;
+    margin: 20px 0 10px;
+    line-height: 15px;
+    white-space: pre-wrap;
+  }
+  
+  .spinner {
+    margin: 20px auto;
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid #3498db;
+    width: 60px;
+    height: 60px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+  
+  .spinner-container {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 150px;
+    background-color: #080707;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  .spinner-container p {
+    margin: 20px auto;
+    font-size: 20px;
+    color: #3498db;
+  }
+  
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  #industry{
+    height:30px;
+    width:200px;   
+   }
+  
+  /* The container <div> - needed to position the dropdown content */
+  #industry {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  #industry option{
+    height:30px;
+    width:200px;   
+  }
+
+  nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position:absolute;
+    left: 100px;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+    display: block;
+  }
+  
+  nav a:hover {
+    background-color: #444;
+  }
+  
+  nav a.active {
+    background-color: #444;
+    font-weight: bold;
+  }

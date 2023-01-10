@@ -125,3 +125,125 @@ def extract_job(description):
 
     return response_text
 
+
+
+
+@app.route("/resume", methods=["POST"])
+def get_recommendations():
+
+    description = request.form['job']   
+    job_desc = extract_job(description)
+
+    if bool(request.files["resume"]) and len(request.form['section']) == 0:
+        error_message = "Please upload a PDF or DOCX version of your resume"
+        request_file = request.files["resume"]
+        file_name = request_file.filename
+        file_type = mimetypes.guess_type(file_name)[0]
+        if file_type == 'application/pdf':
+            resume = extract_resume_pdf(request_file)
+        elif file_type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+            resume = extract_resume_docx(request_file)
+        else:
+            return render_template('form.html', result=error_message)
+
+        prompt = "Provide recommendations on improving the following resume given the job description and seperate the recommendations into work experience, project experience, leadership experience. Recommendations should quote from the applicant's resume when explaining how to improve the match rate with the job description, improve word usage, and sentence structure."
+        prompt += 'Resume: ' + resume + "\n"
+        prompt += 'Job Description' + job_desc
+        response = openai.Completion.create(
+            model="text-davinci-003",
+            prompt=prompt,
+            temperature=0.8,
+            max_tokens = 2485
+        )
+        response_text = response['choices'][0]['text'].strip()
+        return render_template('form.html', result=response_text)
+    elif not bool(request.files["resume"]) and len(request.form['section']) != 0:
+        section = request.form['section']
+        new_section = rewrite(section,job_desc)
+        return render_template('form.html', result=new_section)
+    else:
+        error_message = "Please choose one recommendation tool at a time."
+        return render_template('form.html', result=error_message)
+
+
+    
+
+    
+def rewrite(section,job_desc):
+    string = "Rewrite the following experience section to more closely align with the job qualifications and responsibilities. These changes may include incorporating relevant skills, improving sentence structure, change wording and highlighting accomplishments. Maintain the same format\
+        of the original section."
+    string += "\n"
+    string += 'Experience Section: ' + section + "\n"
+    string += 'Job Description: ' + job_desc
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt=string,
+        temperature=0.9,
+        max_tokens = 1000,
+        n=2
+    )
+    return response['choices'][0]['text'].strip()
+
+
+
+def extract_resume_pdf(pdf_file):
+    # Get the binary data of the PDF file from the request
+    # Create a PDF object
+    pdf = PyPDF2.PdfReader(pdf_file)
+
+    # Iterate over every page in the PDF
+    text = ""
+    for page in range(len(pdf.pages)):
+        # Extract the text from the current page
+        text += pdf.pages[page].extract_text()
+    # Return the extracted text
+# Apply text on GPT-3 Summarization
+    response = openai.Completion.create(
+                model="text-davinci-003",
+                prompt="""Summarize the text below into a JSON with exactly the following structure {basic_info: {first_name, last_name, full_name, email, phone_number, location, portfolio_website_url, linkedin_url, github_main_page_url, university, education_level (BS, MS, or PhD), graduation_year, graduation_month, majors, GPA}, work_experience: [{job_title, company, location, duration, job_summary}], leadership_experience:[{role, description}], project_experience:[{project_name, project_discription}]}
+""" + '\n' + text,
+                temperature = 0.0,
+                max_tokens = 2000
+            )
+
+    response_text = response['choices'][0]['text'].strip()
+
+    return response_text
+
+def extract_resume_docx(docx_file):
+    file_bytes = BytesIO()
+    file_bytes.write(docx_file.read())
+    # Seek to the beginning of the BytesIO object
+    file_bytes.seek(0)
+    # Read the file using the Document object from python-docx
+    document = Document(file_bytes)
+    # Extract the contents of the document
+    text = ''
+    for paragraph in document.paragraphs:
+        text += paragraph.text
+    
+    response = openai.Completion.create(
+                model="text-davinci-003",
+                prompt="""Summarize the text below into a JSON with exactly the following structure {basic_info: {first_name, last_name, full_name, email, phone_number, location, portfolio_website_url, linkedin_url, github_main_page_url, university, education_level (BS, MS, or PhD), graduation_year, graduation_month, majors, GPA}, work_experience: [{job_title, company, location, duration, job_summary}], leadership_experience:[{role, description}], project_experience:[{project_name, project_discription}]}
+""" + '\n' + text,
+                temperature = 0.0,
+                max_tokens = 2000
+            )
+
+    response_text = response['choices'][0]['text'].strip()
+
+    return response_text
+
+def extract_job(description):
+    response_text = ''
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt="""Summarize the text below into a JSON with exactly the following structure {basic_info: {company description}, role_description: [{job_title, responsibilities}], role_qualifications:[{qualifications, skills}]}
+""" + '\n' + description,
+        temperature = 0.0,
+        max_tokens = 1000
+    )
+    response_text += response['choices'][0]['text'].strip()
+
+    return response_text
+
