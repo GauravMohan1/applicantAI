@@ -126,11 +126,12 @@ def extract_job(description):
     return response_text
 
 
-
+@app.route("/resume")
+def index():
+        return render_template("form.html")
 
 @app.route("/resume", methods=["POST"])
 def get_recommendations():
-
     description = request.form['job']   
     job_desc = extract_job(description)
 
