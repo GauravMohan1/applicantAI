@@ -224,7 +224,7 @@ def extract_job(description):
 
 
 @app.route("/editor", methods=["GET"])
-def resume():
+def editor():
     return render_template("editor.html")
 
 @app.route("/editor", methods=["POST"])
@@ -234,7 +234,7 @@ def get_section():
 
     section = request.form['section']
     new_section = rewrite(section,job_desc)
-    return render_template('form.html', result=new_section)
+    return render_template('editor.html', result=new_section)
 
 def extract_job(description):
     response_text = ''
