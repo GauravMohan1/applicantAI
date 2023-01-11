@@ -8,30 +8,27 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}" />
   </head>
 <body>
-    <h1 style="font-family:Trocchi; color:rgb(228, 228, 228);">Resume Recommender</h1>
+    <h1 style="font-family:Trocchi; color:rgb(228, 228, 228);">Resume Editor</h1>
     <h5 style="text-align:center"> 
-        ApplicantAI's resume recommender requires you to upload your resume, paste the job description and hit generate recommendations. 
-        This will give you a set of recommendations to help your resume stand out for this job application.
+        ApplicantAI's resume editor will rewrite your  work, leadership, or project experience by improving word usage, sentence structure, and 
+        alignment with the job requirements and qualifications. These changes can help a resume stand out in an application.
     </h5>
     <br>
-    <h4 style="text-align:center">Upload Resume (PDF or DOCX only)</h4>
-    <br>
-    <form action="/resume" method="post" id='editor' enctype="multipart/form-data">
-        <input type="file" name="resume" id="resume" required/>
-        <br>
+    <form action="/editor" method="post" id='editor' enctype="multipart/form-data">
         <div class="textarea-container">
             <textarea class="textAreaMultiline" name='job' id='job' placeholder="Paste Job Description Here" rows="35" cols="35" required></textarea>
+            <textarea class="textAreaMultiline" name='section' id='section' placeholder="Paste Resume Section Here" rows="25" cols="25" required></textarea>
         </div>
-        <input type="submit" value="Generate Recommendations"/>
+        <input type="submit" value="Generate Section"/>
     </form>
     <div class="spinner-container">
-        <p>Loading Recommendations...</p>
+        <p>Loading Section...</p>
         <div class="spinner"></div>
     </div>
     {% if result %}
     <div class="popup">
         <button id="close">&times;</button>
-        <h2>Here's your Resume Recommendations!</h2>
+        <h2>Here's your New Resume Section!</h2>
         <p>
             {{ result }}
         </p>
@@ -62,8 +59,3 @@
     </script>
 </body>
 </html>
-
-
-
-    
-   

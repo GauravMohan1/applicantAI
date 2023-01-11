@@ -1,4 +1,4 @@
-@font-face {
+  @font-face {
     font-family: "Fantasy";
     src: url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff2)
         format("woff2"),
@@ -95,13 +95,14 @@
     width: 500px;
     height: 500px;
     position: relative;
+    right: 60px;
   }
 
   .textAreaMultiline {
-    border : 5px solid red;
+    flex: 1;
+    border : 2px solid red;
     margin: 10px 10px;
   }
-
   input[type="submit"] {
     padding: 12px 0;
     color: #fff;
