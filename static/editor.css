@@ -111,6 +111,7 @@
     border-radius: 4px;
     text-align: center;
     cursor: pointer;
+    position: relative;
     left: 20px;
   }
   
