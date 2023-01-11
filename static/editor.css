@@ -95,7 +95,7 @@
     width: 500px;
     height: 500px;
     position: relative;
-    padding-right: 100px;
+    margin-left: -60px;
   }
 
   .textAreaMultiline {
