@@ -30,7 +30,7 @@
   input[type="submit"] {
     display: block;
     position: relative;
-    left: 30px;
+    padding-right:15px
   }
 
   
