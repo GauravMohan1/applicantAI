@@ -24,7 +24,7 @@
   input[type="file"] {
     display: block;
     position: relative;
-    left: 80px;
+    left: 60px;
   }
 
   input[type="submit"] {
@@ -98,7 +98,7 @@
   }
 
   .textAreaMultiline {
-    border : 5px solid red;
+    border : 4px solid red;
     margin: 10px 10px;
   }
 
@@ -110,6 +110,7 @@
     border-radius: 4px;
     text-align: center;
     cursor: pointer;
+    left: 10px;
   }
   
   .popup{
@@ -214,7 +215,7 @@
     justify-content: flex-start;
     align-items: center;
     position:absolute;
-    left: 100px;
+    left: 60px;
     background-color: #333;
     color: #fff;
   }

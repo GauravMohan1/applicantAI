@@ -94,6 +94,17 @@ input[type="submit"] {
   text-align: center;
   cursor: pointer;
 }
+input[type="file"] {
+  display: block;
+  position: relative;
+  left: 60px;
+}
+
+select {
+  display: block;
+  position: relative;
+  left: 60px;
+}
 
 .popup{
   background-color: #ffffff;
@@ -198,7 +209,7 @@ nav {
   justify-content: flex-start;
   align-items: center;
   position:absolute;
-  left: 100px;
+  left: 60px;
   background-color: #333;
   color: #fff;
 }

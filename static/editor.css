@@ -95,7 +95,7 @@
     width: 500px;
     height: 500px;
     position: relative;
-    right: 60px;
+    right: 30px;
   }
 
   .textAreaMultiline {
@@ -215,7 +215,7 @@
     justify-content: flex-start;
     align-items: center;
     position:absolute;
-    left: 100px;
+    left: 60px;
     background-color: #333;
     color: #fff;
   }
