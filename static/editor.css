@@ -99,7 +99,7 @@
   input[type="submit"] {
     display: block;
     position: relative;
-    left: 40px;
+    right: 40px;
     padding: 12px 0;
     color: #fff;
     background-color: #10a37f;
