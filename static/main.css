@@ -204,9 +204,7 @@ margin-top: 0px;
   width:200px;   
 }
 
-
-.nav-tabs li {
-  border-right: 1px solid rgb(217, 62, 62);
+nav {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -215,9 +213,6 @@ margin-top: 0px;
   background-color: #333;
   color: #fff;
 }
-.nav-tabs li:last-child {
-  border-right: none;
-}
 
 nav a {
   color: #fff;
@@ -225,6 +220,11 @@ nav a {
   font-size: 18px;
   padding: 10px;
   display: block;
+  border-right: 1px solid #fff;
+}
+
+nav a:last-child {
+  border-right: none;
 }
 
 nav a:hover {
