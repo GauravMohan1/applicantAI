@@ -262,7 +262,7 @@ def extract_job(description):
     
 def rewrite(section,job_desc):
     string = "Rewrite the following experience section to more closely align with the job qualifications and responsibilities. These changes may include incorporating relevant skills, improving sentence structure, change wording and highlighting accomplishments.\
-        Format each experience with the headline followed by the job description."
+        Format the experience with the headline followed by the bullet points of the job description."
     string += "\n"
     string += 'Experience Section: ' + section + "\n"
     string += 'Job Description: ' + job_desc
