@@ -99,7 +99,6 @@
   input[type="submit"] {
     display: block;
     position: relative;
-    padding: 12px 0;
     color: #fff;
     background-color: #10a37f;
     border: none;
@@ -221,6 +220,11 @@
     font-size: 18px;
     padding: 10px;
     display: block;
+    border-right: 1px solid rgba(9, 249, 97, 0.648);
+  }
+  
+  nav a:last-child {
+    border-right: none;
   }
   
   nav a:hover {
