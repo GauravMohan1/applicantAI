@@ -79,8 +79,6 @@
 
   .textarea-container {
     display: flex;
-    width: 500px;
-    height: 500px;
     position: relative;
     white-space: pre; 
     overflow-wrap: break-word; 
