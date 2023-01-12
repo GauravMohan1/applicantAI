@@ -27,13 +27,6 @@
     left: 80px;
   }
 
-  input[type="submit"] {
-    display: block;
-    position: relative;
-    left: 40px;
-  }
-
-  
   body {
     display: flex;
     flex-direction: column;
@@ -104,6 +97,9 @@
     margin: 10px 10px;
   }
   input[type="submit"] {
+    display: block;
+    position: relative;
+    left: 40px;
     padding: 12px 0;
     color: #fff;
     background-color: #10a37f;
@@ -111,8 +107,7 @@
     border-radius: 4px;
     text-align: center;
     cursor: pointer;
-    position: relative;
-    left: 20px;
+    
   }
   
   .popup{
