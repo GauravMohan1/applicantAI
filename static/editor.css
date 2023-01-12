@@ -82,13 +82,12 @@
     width: 500px;
     height: 500px;
     position: relative;
-    left: -100px;
   }
 
   .textAreaMultiline {
-    flex: 1;
     border : 2px solid red;
     margin: 10px 10px;
+    white-space: pre; 
     overflow-wrap: break-word; 
     width: 100%;
     color: #8e8ea0; 
