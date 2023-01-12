@@ -233,17 +233,7 @@ def get_section():
     job_desc = extract_job(description)
 
     section = request.form['section']
-
-    response = openai.Completion.create(
-        model="text-davinci-003",
-        prompt="""Summarize the text below into a JSON with exactly the following structure {headline: [{company, role, duration}], experience: job_description}
-""" + '\n' + description,
-        temperature = 0.0,
-        max_tokens = 1500
-    )
-    section_parsed = response['choices'][0]['text'].strip()
-
-    new_section = rewrite(section_parsed,job_desc)
+    new_section = rewrite(section,job_desc)
     return render_template('editor.html', result=new_section)
 
 def extract_job(description):
@@ -262,7 +252,7 @@ def extract_job(description):
     
 def rewrite(section,job_desc):
     string = "Rewrite the following experience section to more closely align with the job qualifications and responsibilities. These changes may include incorporating relevant skills, improving sentence structure, change wording and highlighting accomplishments.\
-        Format the experience with the headline followed by the bullet points of the job description."
+        Maintain the same format of the experience section below."
     string += "\n"
     string += 'Experience Section: ' + section + "\n"
     string += 'Job Description: ' + job_desc
