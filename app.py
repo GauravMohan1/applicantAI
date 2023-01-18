@@ -40,7 +40,7 @@ def get_letter():
         model="text-davinci-003",
         prompt=generate_prompt(resume, company, job_desc, industry),
         temperature=0.75,
-        max_tokens = 2300,
+        max_tokens = 2000,
         n=2
     )
 
@@ -80,7 +80,7 @@ def extract_resume_pdf(pdf_file):
                 prompt="""Summarize the text below into a JSON with exactly the following structure {basic_info: {first_name, last_name, full_name, email, phone_number, location, portfolio_website_url, linkedin_url, github_main_page_url, university, education_level (BS, MS, or PhD), graduation_year, graduation_month, majors, GPA}, work_experience: [{job_title, company, location, duration, job_summary}], leadership_experience:[{role, description}], project_experience:[{project_name, project_discription}]}
 """ + '\n' + text,
                 temperature = 0.0,
-                max_tokens = 2000
+                max_tokens = 1500
             )
 
     response_text = response['choices'][0]['text'].strip()
@@ -104,7 +104,7 @@ def extract_resume_docx(docx_file):
                 prompt="""Summarize the text below into a JSON with exactly the following structure {basic_info: {first_name, last_name, full_name, email, phone_number, location, portfolio_website_url, linkedin_url, github_main_page_url, university, education_level (BS, MS, or PhD), graduation_year, graduation_month, majors, GPA}, work_experience: [{job_title, company, location, duration, job_summary}], leadership_experience:[{role, description}], project_experience:[{project_name, project_discription}]}
 """ + '\n' + text,
                 temperature = 0.0,
-                max_tokens = 2000
+                max_tokens = 1500
             )
 
     response_text = response['choices'][0]['text'].strip()
