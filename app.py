@@ -154,7 +154,7 @@ def get_recommendations():
         model="text-davinci-003",
         prompt=prompt,
         temperature=0.8,
-        max_tokens = 2485
+        max_tokens = 2400
     )
     response_text = response['choices'][0]['text'].strip()
     return render_template('form.html', result=response_text)
@@ -260,7 +260,7 @@ def rewrite(section,job_desc):
         model="text-davinci-003",
         prompt=string,
         temperature=0.9,
-        max_tokens = 1500,
+        max_tokens = 1000,
         n=2
     )
     return response['choices'][0]['text'].strip()
