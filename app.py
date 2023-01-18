@@ -147,7 +147,7 @@ def get_recommendations():
     else:
         return render_template('form.html', result=error_message)
 
-    prompt = "Provide recommendations on improving the following resume given the job description and seperate the recommendations into work experience, project experience, leadership experience. Recommendations should quote from the applicant's resume when explaining how to improve the match rate with the job description, improve word usage, and sentence structure."
+    prompt = "Provide recommendations on improving the following resume given the job description and seperate the recommendations into work experience, project experience, leadership experience. Recommendations should explain how to improve the match rate of the resume with the job description by incorporating certain key skills and changing word usage to highlight impact on experiences."
     prompt += 'Resume: ' + resume + "\n"
     prompt += 'Job Description' + job_desc
     response = openai.Completion.create(
